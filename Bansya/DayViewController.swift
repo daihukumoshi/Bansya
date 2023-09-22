@@ -13,9 +13,10 @@ import PhotosUI
 
 class DayViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, PHPickerViewControllerDelegate{
     
-    let realm = try! Realm()
+    
     @IBOutlet var collectionView: UICollectionView!
     
+    let realm = try! Realm()
     var Lectures: [Lecture] = []
     var photoExist: Bool = false
     var selectedLectureName: String? = nil
@@ -28,15 +29,17 @@ class DayViewController: UIViewController, UICollectionViewDelegate, UICollectio
     }
     
     func readLecture() -> [Lecture]{
+        
         return Array(realm.objects(Lecture.self).where({$0.day == selectedLectureName ?? ""}))
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if photoExist == true{
-            return Lectures.count
-        }else{
-            return 0
-        }
+//        if photoExist == true{
+//            return Lectures.count
+//        }else{
+//            return 0
+//        }
+        return photoExist ? Lectures.count : 0
         
     }
     
@@ -108,17 +111,18 @@ class DayViewController: UIViewController, UICollectionViewDelegate, UICollectio
                         //エラー処理
                         print("エラー")
                     }
-                    
-                    let newLecture = Lecture()
-                    newLecture.day = self.selectedLectureName ?? ""
-                    newLecture.fileName = filename
-                    try! self.realm.write {
-                        self.realm.add(newLecture)
+                    DispatchQueue.main.async {
+                        let newLecture = Lecture()
+                        newLecture.day = self.selectedLectureName ?? ""
+                        newLecture.fileName = filename
+                        try! self.realm.write {
+                            self.realm.add(newLecture)
+                        }
+                        
+                        self.Lectures = self.readLecture()
+                        self.collectionView.reloadData()
                     }
-                    
-                    self.Lectures = self.readLecture()
-                    self.collectionView.reloadData()
-                    
+                
                 }
             })
         }
