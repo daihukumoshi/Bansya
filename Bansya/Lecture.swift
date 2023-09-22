@@ -13,6 +13,7 @@ class Lecture: Object {
     @Persisted var day: String = ""
     //id
     @Persisted var id : String = NSUUID().uuidString
-    //写真
+    //写真のファイル名
+    @Persisted var fileName: String = "default.png"
     //キーワード
 }

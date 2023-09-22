@@ -8,7 +8,7 @@
 import UIKit
 import RealmSwift
 
-class LectureViewController: UIViewController, UITableViewDataSource{
+class LectureViewController: UIViewController, UITableViewDataSource, UITableViewDelegate{
     
     
     @IBOutlet var tableView: UITableView!
@@ -16,6 +16,7 @@ class LectureViewController: UIViewController, UITableViewDataSource{
     var Lectures: [Lecture] = []
     var datePicker: UIDatePicker = UIDatePicker()
     var selectedSubject: Subject? = nil
+    var selectedLectureName: String? = nil
 
 
     override func viewDidLoad() {
@@ -23,8 +24,9 @@ class LectureViewController: UIViewController, UITableViewDataSource{
         Lectures = readLecture()
 
         tableView.dataSource = self
+        tableView.delegate = self
         tableView.register(UINib(nibName: "LectureTableViewCell", bundle: nil), forCellReuseIdentifier: "LectureCell")
-        
+        tableView.rowHeight = 200
         
         let longTap = UILongPressGestureRecognizer(target: self, action: #selector(longTap))
         tableView.addGestureRecognizer(longTap)
@@ -61,7 +63,7 @@ class LectureViewController: UIViewController, UITableViewDataSource{
         //長押しされたCellのindexPathを取得
         let touchPoint = sender.location(in: tableView)
         if let indexPath = tableView.indexPathForRow(at: touchPoint){
-            let alert = UIAlertController(title: Lectures[indexPath.row].day, message: "操作を以下から選択してください", preferredStyle: .alert)
+            let alert = UIAlertController(title: Lectures[indexPath.row].day, message: "操作を以下から選択してください\n\n\n\n\n\n\n\n", preferredStyle: .alert)
             let delete = UIAlertAction(title: "講義を削除", style: .destructive, handler: { (action) -> Void in
                 //削除押された時の処理。DBから削除
                 
@@ -69,21 +71,30 @@ class LectureViewController: UIViewController, UITableViewDataSource{
                 try! self.realm.write{
                     self.realm.delete(targetItem)
                 }
+                
+                self.Lectures = self.readLecture()
+                self.tableView.reloadData()
             })
-            let edit = UIAlertAction(title: "変更を保存", style: .default, handler: { (action) -> Void in
+            let edit = UIAlertAction(title: "変更を保存", style: .default, handler: { [self] (action) -> Void in
                 //編集押された時の処理。DB更新&画面遷移〜〜〜
                 let formatter = DateFormatter()
                 formatter.dateFormat = "MM月dd日"
                 
                 let targetItem = self.realm.objects(Lecture.self).where({$0.id == self.Lectures[indexPath.row].id}).first!
                 try! self.realm.write{
-                    targetItem.day = "(formatter.string(from: datePicker.date))"
+                    targetItem.day = formatter.string(from: self.datePicker.date)
                 }
+                
+                self.Lectures = self.readLecture()
+                self.tableView.reloadData()
             })
             let cancel = UIAlertAction(title: "キャンセル", style: UIAlertAction.Style.cancel, handler: { (action) -> Void in
                 //キャンセル
                 
             })
+            
+            datePicker.frame = CGRect(x: 0, y: 50, width: 270, height: 162)
+            alert.view.addSubview(datePicker)
             
             alert.addAction(delete)
             alert.addAction(edit)
@@ -101,7 +112,7 @@ class LectureViewController: UIViewController, UITableViewDataSource{
         datePicker.locale = Locale.current
         datePicker.preferredDatePickerStyle = .wheels
         
-        let alert = UIAlertController(title: "講義を追加", message: "講義日時を選択してください", preferredStyle: .alert)
+        let alert = UIAlertController(title: "講義を追加", message: "講義日時を選んでください\n\n\n\n\n\n\n\n", preferredStyle: .alert)
         
         let new = UIAlertAction(title: "新規作成", style: .default, handler: { [self] (action) -> Void in
             //編集押された時の処理。DB更新&画面遷移〜〜〜
@@ -125,20 +136,33 @@ class LectureViewController: UIViewController, UITableViewDataSource{
         })
         
         // Auto LayoutでDatePickerに制約を追加
-        datePicker.translatesAutoresizingMaskIntoConstraints = false
-        datePicker.heightAnchor.constraint(equalToConstant: 130).isActive = true
-        datePicker.widthAnchor.constraint(equalToConstant: 270).isActive = true
+//        datePicker.translatesAutoresizingMaskIntoConstraints = false
+//        datePicker.heightAnchor.constraint(equalToConstant: 130).isActive = true
+//        datePicker.widthAnchor.constraint(equalToConstant: 270).isActive = true
+//
+//        if let container = alert.view.subviews.first?.subviews.first {
+//            container.translatesAutoresizingMaskIntoConstraints = false
+//            container.heightAnchor.constraint(equalToConstant: 400).isActive = true // ここで高さを調整
+//        }
         
-        if let container = alert.view.subviews.first?.subviews.first {
-            container.translatesAutoresizingMaskIntoConstraints = false
-            container.heightAnchor.constraint(equalToConstant: 200).isActive = true // ここで高さを調整
-        }
-        
-        
+        datePicker.frame = CGRect(x: 0, y: 50, width: 270, height: 162)
         alert.view.addSubview(datePicker)
         alert.addAction(new)
         alert.addAction(cancel)
         self.present(alert, animated: true, completion: nil)
+    }
+    
+    //セルタップ時画面遷移
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
+        selectedLectureName = Lectures[indexPath.row].day
+        self.performSegue(withIdentifier: "toDay", sender: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toDay"{
+            let DayViewController = segue.destination as! DayViewController
+            DayViewController.selectedLectureName = self.selectedLectureName
+        }
     }
 
     /*
@@ -148,6 +172,7 @@ class LectureViewController: UIViewController, UITableViewDataSource{
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
+
     }
     */
 

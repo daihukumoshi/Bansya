@@ -23,6 +23,8 @@
 		984F511F2AB92DD500B29EAD /* LectureTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984F511D2AB92DD500B29EAD /* LectureTableViewCell.swift */; };
 		984F51202AB92DD500B29EAD /* LectureTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 984F511E2AB92DD500B29EAD /* LectureTableViewCell.xib */; };
 		984F51222AB92ED700B29EAD /* Lecture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984F51212AB92ED700B29EAD /* Lecture.swift */; };
+		98C3A9662ABC485C0006AE2E /* DayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C3A9652ABC485C0006AE2E /* DayViewController.swift */; };
+		98C3A96A2ABD70CC0006AE2E /* default.png in Resources */ = {isa = PBXBuildFile; fileRef = 98C3A9692ABD70CC0006AE2E /* default.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +44,8 @@
 		984F511D2AB92DD500B29EAD /* LectureTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LectureTableViewCell.swift; sourceTree = "<group>"; };
 		984F511E2AB92DD500B29EAD /* LectureTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LectureTableViewCell.xib; sourceTree = "<group>"; };
 		984F51212AB92ED700B29EAD /* Lecture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lecture.swift; sourceTree = "<group>"; };
+		98C3A9652ABC485C0006AE2E /* DayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayViewController.swift; sourceTree = "<group>"; };
+		98C3A9692ABD70CC0006AE2E /* default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = default.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +95,8 @@
 				984F511D2AB92DD500B29EAD /* LectureTableViewCell.swift */,
 				984F511E2AB92DD500B29EAD /* LectureTableViewCell.xib */,
 				984F51212AB92ED700B29EAD /* Lecture.swift */,
+				98C3A9652ABC485C0006AE2E /* DayViewController.swift */,
+				98C3A9692ABD70CC0006AE2E /* default.png */,
 			);
 			path = Bansya;
 			sourceTree = "<group>";
@@ -165,6 +171,7 @@
 				984F50E52AB7EFB000B29EAD /* LaunchScreen.storyboard in Resources */,
 				984F50E22AB7EFB000B29EAD /* Assets.xcassets in Resources */,
 				984F50E02AB7EFA400B29EAD /* Main.storyboard in Resources */,
+				98C3A96A2ABD70CC0006AE2E /* default.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -176,6 +183,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				984F51222AB92ED700B29EAD /* Lecture.swift in Sources */,
+				98C3A9662ABC485C0006AE2E /* DayViewController.swift in Sources */,
 				984F51172AB80E2F00B29EAD /* SubjectTableViewCell.swift in Sources */,
 				984F511C2AB833D400B29EAD /* LectureViewController.swift in Sources */,
 				984F50F22AB7F46A00B29EAD /* Subject.swift in Sources */,
