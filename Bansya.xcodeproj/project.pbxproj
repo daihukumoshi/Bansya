@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		984B46252AC06FD8001B733C /* DayKeyword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984B46242AC06FD8001B733C /* DayKeyword.swift */; };
 		984F50D92AB7EFA400B29EAD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984F50D82AB7EFA400B29EAD /* AppDelegate.swift */; };
 		984F50DB2AB7EFA400B29EAD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984F50DA2AB7EFA400B29EAD /* SceneDelegate.swift */; };
 		984F50DD2AB7EFA400B29EAD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984F50DC2AB7EFA400B29EAD /* ViewController.swift */; };
@@ -23,11 +24,13 @@
 		984F511F2AB92DD500B29EAD /* LectureTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984F511D2AB92DD500B29EAD /* LectureTableViewCell.swift */; };
 		984F51202AB92DD500B29EAD /* LectureTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 984F511E2AB92DD500B29EAD /* LectureTableViewCell.xib */; };
 		984F51222AB92ED700B29EAD /* Lecture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984F51212AB92ED700B29EAD /* Lecture.swift */; };
+		98BAC1402ABDD62C00BAF6C1 /* DayPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98BAC13F2ABDD62C00BAF6C1 /* DayPhoto.swift */; };
 		98C3A9662ABC485C0006AE2E /* DayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C3A9652ABC485C0006AE2E /* DayViewController.swift */; };
 		98C3A96A2ABD70CC0006AE2E /* default.png in Resources */ = {isa = PBXBuildFile; fileRef = 98C3A9692ABD70CC0006AE2E /* default.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		984B46242AC06FD8001B733C /* DayKeyword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayKeyword.swift; sourceTree = "<group>"; };
 		984F50D52AB7EFA400B29EAD /* Bansya.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bansya.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		984F50D82AB7EFA400B29EAD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		984F50DA2AB7EFA400B29EAD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -44,6 +47,7 @@
 		984F511D2AB92DD500B29EAD /* LectureTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LectureTableViewCell.swift; sourceTree = "<group>"; };
 		984F511E2AB92DD500B29EAD /* LectureTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LectureTableViewCell.xib; sourceTree = "<group>"; };
 		984F51212AB92ED700B29EAD /* Lecture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lecture.swift; sourceTree = "<group>"; };
+		98BAC13F2ABDD62C00BAF6C1 /* DayPhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayPhoto.swift; sourceTree = "<group>"; };
 		98C3A9652ABC485C0006AE2E /* DayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayViewController.swift; sourceTree = "<group>"; };
 		98C3A9692ABD70CC0006AE2E /* default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = default.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -97,6 +101,8 @@
 				984F51212AB92ED700B29EAD /* Lecture.swift */,
 				98C3A9652ABC485C0006AE2E /* DayViewController.swift */,
 				98C3A9692ABD70CC0006AE2E /* default.png */,
+				98BAC13F2ABDD62C00BAF6C1 /* DayPhoto.swift */,
+				984B46242AC06FD8001B733C /* DayKeyword.swift */,
 			);
 			path = Bansya;
 			sourceTree = "<group>";
@@ -182,6 +188,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				98BAC1402ABDD62C00BAF6C1 /* DayPhoto.swift in Sources */,
 				984F51222AB92ED700B29EAD /* Lecture.swift in Sources */,
 				98C3A9662ABC485C0006AE2E /* DayViewController.swift in Sources */,
 				984F51172AB80E2F00B29EAD /* SubjectTableViewCell.swift in Sources */,
@@ -191,6 +198,7 @@
 				984F511F2AB92DD500B29EAD /* LectureTableViewCell.swift in Sources */,
 				984F50D92AB7EFA400B29EAD /* AppDelegate.swift in Sources */,
 				984F50DB2AB7EFA400B29EAD /* SceneDelegate.swift in Sources */,
+				984B46252AC06FD8001B733C /* DayKeyword.swift in Sources */,
 				984F511A2AB81A6F00B29EAD /* SettingViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

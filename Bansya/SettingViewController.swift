@@ -46,14 +46,17 @@ class SettingViewController: UIViewController, UIPickerViewDataSource, UIPickerV
             }
         }else{
             //新規
-            let newSubject = Subject()
-            newSubject.title = titleTextField.text ?? ""
-            newSubject.day = dayTextField.text ?? ""
-            newSubject.time = timeTextField.text ?? ""
-            
-            try! self.realm.write{
-                realm.add(newSubject)
+            if titleTextField.text != "", dayTextField.text != "", timeTextField.text != ""{
+                let newSubject = Subject()
+                newSubject.title = titleTextField.text ?? ""
+                newSubject.day = dayTextField.text ?? ""
+                newSubject.time = timeTextField.text ?? ""
+                
+                try! self.realm.write{
+                    realm.add(newSubject)
+                }
             }
+            
         }
     }
     

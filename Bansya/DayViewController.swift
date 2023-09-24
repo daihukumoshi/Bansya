@@ -17,20 +17,20 @@ class DayViewController: UIViewController, UICollectionViewDelegate, UICollectio
     @IBOutlet var collectionView: UICollectionView!
     
     let realm = try! Realm()
-    var Lectures: [Lecture] = []
+    var dayPhotos: [DayPhoto] = []
     var photoExist: Bool = false
-    var selectedLectureName: String? = nil
+    var selectedLecture: Lecture? = nil
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        Lectures = readLecture()
+        dayPhotos = readPhoto()
         
     }
     
-    func readLecture() -> [Lecture]{
-        
-        return Array(realm.objects(Lecture.self).where({$0.day == selectedLectureName ?? ""}))
+    func readPhoto() -> [DayPhoto]{
+        return Array(realm.objects(DayPhoto.self).where({$0.Lecture == selectedLecture!}))
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -39,7 +39,7 @@ class DayViewController: UIViewController, UICollectionViewDelegate, UICollectio
 //        }else{
 //            return 0
 //        }
-        return photoExist ? Lectures.count : 0
+        return dayPhotos.count
         
     }
     
@@ -47,14 +47,18 @@ class DayViewController: UIViewController, UICollectionViewDelegate, UICollectio
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "photoCell", for: indexPath)
         let imageView = cell.contentView.viewWithTag(1) as! UIImageView
         
-        if photoExist == true{
+        if dayPhotos.count != 0{
+            print("dayPhotos count: \(dayPhotos.count ?? 0)")
+            print("fileName: \(dayPhotos[indexPath.row].fileName)")
             
             //let cellImage = UIImage((named: Lectures[indexPath.row].fileName))
             //URL型にキャスト
-            let fileURL = URL(string: Lectures[indexPath.row].fileName)
+            //let fileURL = URL(string: dayPhotos[indexPath.row].fileName)
+            let fileURL = URL(fileURLWithPath: NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]).appendingPathComponent(dayPhotos[indexPath.row].fileName)
             //パス型に変換
-            let filePath = fileURL?.path
-            let cellImage = UIImage(contentsOfFile: filePath!)
+            //let filePath = fileURL?.path
+            let cellImage = UIImage(contentsOfFile: fileURL.path)
+            //let cellImage = UIImage(contentsOfFile: filePath!)
             imageView.image = cellImage
         }else{
             let defaultImage = UIImage(named: "default.jpg")
@@ -67,12 +71,17 @@ class DayViewController: UIViewController, UICollectionViewDelegate, UICollectio
     func collectionView(_ collectionView: UICollectionView,
                             layout collectionViewLayout: UICollectionViewLayout,
                             sizeForItemAt indexPath: IndexPath) -> CGSize {
-        // 横方向のスペース調整
-        let horizontalSpace:CGFloat = 1
-        let cellSize:CGFloat = self.view.bounds.width/2 - horizontalSpace
-        // 正方形で返すためにwidth,heightを同じにする
-        return CGSize(width: cellSize, height: cellSize)
+//        // 横方向のスペース調整
+//        let horizontalSpace:CGFloat = 1
+//        let cellSize:CGFloat = self.view.bounds.width/2 - horizontalSpace
+//        // 正方形で返すためにwidth,heightを同じにする
+//        return CGSize(width: cellSize, height: cellSize)
+        
+        let collectionViewWidth = collectionView.bounds.width
+        let cellWidth = (collectionViewWidth - 1) / 2 // 2列にしたい場合、セル間に1ポイントのスペースを入れます
+        return CGSize(width: cellWidth, height: cellWidth)
     }
+    
     
     @IBAction func add(){
         var configuration = PHPickerConfiguration()
@@ -112,31 +121,18 @@ class DayViewController: UIViewController, UICollectionViewDelegate, UICollectio
                         print("エラー")
                     }
                     DispatchQueue.main.async {
-                        let newLecture = Lecture()
-                        newLecture.day = self.selectedLectureName ?? ""
-                        newLecture.fileName = filename
+                        let newPhoto = DayPhoto()
+                        newPhoto.Lecture = self.selectedLecture!
+                        newPhoto.fileName = filename
                         try! self.realm.write {
-                            self.realm.add(newLecture)
+                            self.realm.add(newPhoto)
                         }
-                        
-                        self.Lectures = self.readLecture()
+                        self.dayPhotos = self.readPhoto()
                         self.collectionView.reloadData()
                     }
-                
                 }
             })
         }
         
     }
-        
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

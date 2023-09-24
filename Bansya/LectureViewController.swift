@@ -16,7 +16,7 @@ class LectureViewController: UIViewController, UITableViewDataSource, UITableVie
     var Lectures: [Lecture] = []
     var datePicker: UIDatePicker = UIDatePicker()
     var selectedSubject: Subject? = nil
-    var selectedLectureName: String? = nil
+    var selectedLecture: Lecture? = nil
 
 
     override func viewDidLoad() {
@@ -154,14 +154,14 @@ class LectureViewController: UIViewController, UITableViewDataSource, UITableVie
     
     //セルタップ時画面遷移
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
-        selectedLectureName = Lectures[indexPath.row].day
+        selectedLecture = Lectures[indexPath.row]
         self.performSegue(withIdentifier: "toDay", sender: nil)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toDay"{
             let DayViewController = segue.destination as! DayViewController
-            DayViewController.selectedLectureName = self.selectedLectureName
+            DayViewController.selectedLecture = self.selectedLecture
         }
     }
 

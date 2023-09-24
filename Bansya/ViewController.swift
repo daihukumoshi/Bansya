@@ -14,6 +14,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     let realm = try! Realm()
     var Subjects: [Subject] = []
     var selectedSubject: Subject? = nil
+    var newOE: Bool = false
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +35,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         super.viewWillAppear(animated)
         Subjects = readSubject()
         tableView.reloadData()
+        newOE = false
     }
     
     func readSubject() -> [Subject]{
@@ -94,14 +97,47 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             LectureViewController.selectedSubject = self.selectedSubject
         }
         if segue.identifier == "toSetting"{
-            //編集の時は値引き渡し
-            if selectedSubject != nil {
-                let SettingViewController = segue.destination as! SettingViewController
-                SettingViewController.selectedSubject = self.selectedSubject
+            if newOE == true{
+                //編集の時は値引き渡し
+                if selectedSubject != nil {
+                    let SettingViewController = segue.destination as! SettingViewController
+                    SettingViewController.selectedSubject = self.selectedSubject
+                }
             }
+            
         }
     }
     
+    
+    @IBAction func mon(){
+        Subjects = Array(realm.objects(Subject.self).where({$0.day == "月曜日"}))
+        tableView.reloadData()
+    }
+    @IBAction func tue(){
+        Subjects = Array(realm.objects(Subject.self).where({$0.day == "火曜日"}))
+        tableView.reloadData()
+    }
+    @IBAction func wed(){
+        Subjects = Array(realm.objects(Subject.self).where({$0.day == "水曜日"}))
+        tableView.reloadData()
+    }
+    @IBAction func thr(){
+        Subjects = Array(realm.objects(Subject.self).where({$0.day == "木曜日"}))
+        tableView.reloadData()
+    }
+    @IBAction func fri(){
+        Subjects = Array(realm.objects(Subject.self).where({$0.day == "金曜日"}))
+        tableView.reloadData()
+    }
+    @IBAction func sat(){
+        Subjects = Array(realm.objects(Subject.self).where({$0.day == "土曜日"}))
+        tableView.reloadData()
+    }
+    
+    @IBAction func add(){
+        newOE = false
+        self.performSegue(withIdentifier: "toSetting", sender: nil)
+    }
     
 
 }
