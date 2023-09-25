@@ -40,7 +40,7 @@ class LectureViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     func readLecture() -> [Lecture]{
-        return Array(realm.objects(Lecture.self))
+        return Array(realm.objects(Lecture.self).where({$0.Subject == self.selectedSubject}))
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -121,6 +121,7 @@ class LectureViewController: UIViewController, UITableViewDataSource, UITableVie
             
             let newLecture = Lecture()
             newLecture.day = formatter.string(from: self.datePicker.date)
+            newLecture.Subject = self.selectedSubject
             
             try! self.realm.write{
                 realm.add(newLecture)

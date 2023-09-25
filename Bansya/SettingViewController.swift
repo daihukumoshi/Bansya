@@ -15,13 +15,17 @@ class SettingViewController: UIViewController, UIPickerViewDataSource, UIPickerV
     @IBOutlet var titleTextField: UITextField!
     @IBOutlet var dayTextField: UITextField!
     @IBOutlet var timeTextField: UITextField!
+    @IBOutlet var roundedView: UIView!
     var pickerView = UIPickerView()
     var data = ["月曜日", "火曜日", "水曜日", "木曜日", "金曜日", "土曜日"]
     var selectedSubject: Subject!
+    var selectedColor: String = "green"
     
     override func viewDidLoad() {
         super.viewDidLoad()
         createPickerView()
+        roundedView.layer.cornerRadius = 18
+        roundedView.layer.masksToBounds = true
         //編集の場合初期値入れる
         if selectedSubject != nil{
             titleTextField.text = selectedSubject?.title
@@ -43,6 +47,7 @@ class SettingViewController: UIViewController, UIPickerViewDataSource, UIPickerV
                 targetItem.title = titleTextField.text ?? ""
                 targetItem.day = dayTextField.text ?? ""
                 targetItem.time = timeTextField.text ?? ""
+                targetItem.color = selectedColor
             }
         }else{
             //新規
@@ -51,6 +56,7 @@ class SettingViewController: UIViewController, UIPickerViewDataSource, UIPickerV
                 newSubject.title = titleTextField.text ?? ""
                 newSubject.day = dayTextField.text ?? ""
                 newSubject.time = timeTextField.text ?? ""
+                newSubject.color = selectedColor
                 
                 try! self.realm.write{
                     realm.add(newSubject)
@@ -84,6 +90,31 @@ class SettingViewController: UIViewController, UIPickerViewDataSource, UIPickerV
     //picker外押されたら引っ込む
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         dayTextField.endEditing(true)
+    }
+    
+    @IBAction func yellow(){
+        roundedView.backgroundColor = UIColor(red: 250/255, green: 244/255, blue: 199/255, alpha: 1.0)
+        selectedColor = "yellow"
+    }
+    @IBAction func red(){
+        roundedView.backgroundColor = UIColor(red: 243/255, green: 187/255, blue: 194/255, alpha: 1.0)
+        selectedColor = "red"
+    }
+    @IBAction func pink(){
+        roundedView.backgroundColor = UIColor(red: 252/255, green: 241/255, blue: 242/255, alpha: 1.0)
+        selectedColor = "pink"
+    }
+    @IBAction func blue(){
+        roundedView.backgroundColor = UIColor(red: 186/255, green: 220/255, blue: 241/255, alpha: 1.0)
+        selectedColor = "blue"
+    }
+    @IBAction func green(){
+        roundedView.backgroundColor = UIColor(red: 198/255, green: 224/255, blue: 229/255, alpha: 1.0)
+        selectedColor = "green"
+    }
+    @IBAction func purple(){
+        roundedView.backgroundColor = UIColor(red: 213/255, green: 209/255, blue: 232/255, alpha: 1.0)
+        selectedColor = "purple"
     }
     
     

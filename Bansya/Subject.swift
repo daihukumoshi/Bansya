@@ -18,7 +18,7 @@ class Subject: Object {
     //時限
     @Persisted var time: String = ""
     //色
-//    @Persisted var color: String = ""
+    @Persisted var color: String = "green"
     //通知オンオフ
 //    @Persisted var notice: Bool = false
     //通知時間(1970使う)

@@ -49,6 +49,19 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let cell = tableView.dequeueReusableCell(withIdentifier: "SubjectCell", for: indexPath) as! SubjectTableViewCell
         let subject: Subject = Subjects[indexPath.row]
         cell.setCell(title: subject.title, day: (subject.day + subject.time))
+        if Subjects[indexPath.row].color == "yellow"{
+            cell.contentView.backgroundColor = UIColor(red: 250/255, green: 244/255, blue: 199/255, alpha: 1.0)
+        }else if Subjects[indexPath.row].color == "red"{
+            cell.contentView.backgroundColor = UIColor(red: 243/255, green: 187/255, blue: 194/255, alpha: 1.0)
+        }else if  Subjects[indexPath.row].color == "pink"{
+            cell.contentView.backgroundColor = UIColor(red: 252/255, green: 241/255, blue: 242/255, alpha: 1.0)
+        }else if Subjects[indexPath.row].color == "blue"{
+            cell.contentView.backgroundColor = UIColor(red: 186/255, green: 220/255, blue: 241/255, alpha: 1.0)
+        }else if Subjects[indexPath.row].color == "purple"{
+            cell.contentView.backgroundColor = UIColor(red: 213/255, green: 209/255, blue: 232/255, alpha: 1.0)
+        }else{
+            cell.contentView.backgroundColor = UIColor(red: 198/255, green: 224/255, blue: 229/255, alpha: 1.0)
+        }
         return cell
     }
     @objc func longTap(sender: UILongPressGestureRecognizer){
@@ -68,6 +81,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             })
             let edit = UIAlertAction(title: "編集", style: .default, handler: { (action) -> Void in
                 //編集押された時の処理。画面遷移〜〜〜
+                self.newOE = true
                 self.selectedSubject = self.Subjects[indexPath.row]
                 self.performSegue(withIdentifier: "toSetting", sender: nil)
             })

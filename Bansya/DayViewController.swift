@@ -26,7 +26,15 @@ class DayViewController: UIViewController, UICollectionViewDelegate, UICollectio
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         dayPhotos = readPhoto()
-        
+        let layout = UICollectionViewFlowLayout()
+        layout.sectionInset = UIEdgeInsets(top: 15, left: 15, bottom: 15, right: 15)
+        collectionView.collectionViewLayout = layout
+        collectionView.contentInset = UIEdgeInsets.zero
+        collectionView.delegate = self
+       
+       
+        let longTap = UILongPressGestureRecognizer(target: self, action: #selector(longTap))
+        self.collectionView.addGestureRecognizer(longTap)
     }
     
     func readPhoto() -> [DayPhoto]{
@@ -77,9 +85,20 @@ class DayViewController: UIViewController, UICollectionViewDelegate, UICollectio
 //        // 正方形で返すためにwidth,heightを同じにする
 //        return CGSize(width: cellSize, height: cellSize)
         
-        let collectionViewWidth = collectionView.bounds.width
-        let cellWidth = (collectionViewWidth - 1) / 2 // 2列にしたい場合、セル間に1ポイントのスペースを入れます
-        return CGSize(width: cellWidth, height: cellWidth)
+//        let collectionViewWidth = collectionView.bounds.width
+//        let cellWidth = (collectionViewWidth - 1) / 2 // 2列にしたい場合、セル間に1ポイントのスペースを入れます
+//        return CGSize(width: cellWidth, height: cellWidth)
+        
+//        let collectionViewWidth = collectionView.bounds.width
+//            let spacing: CGFloat = 10 // セル間の余白を設定
+//            let numberOfColumns: CGFloat = 2 // 2列にしたい場合
+//
+//            // セルの幅を計算
+//            let cellWidth = (collectionViewWidth - spacing * (numberOfColumns + 1)) / numberOfColumns
+//
+//            return CGSize(width: cellWidth, height: cellWidth) // 正方形のセルを返す
+            let cellSize:CGFloat = (self.view.bounds.width-32)/2 - 4
+            return CGSize(width: cellSize, height: cellSize)
     }
     
     
@@ -135,4 +154,31 @@ class DayViewController: UIViewController, UICollectionViewDelegate, UICollectio
         }
         
     }
+    
+    @objc func longTap(sender: UILongPressGestureRecognizer) {
+        let point: CGPoint = sender.location(in: self.collectionView)
+        let indexPath = self.collectionView.indexPathForItem(at: point)
+        if let indexPath = collectionView.indexPathForItem(at: point){
+            let alert = UIAlertController(title: "写真を削除", message: "本当に写真を削除しますか？_", preferredStyle: .alert)
+            let delete = UIAlertAction(title: "削除", style: .destructive, handler: { (action) -> Void in
+                let targetItem =  self.realm.objects(DayPhoto.self).where({$0.fileName == self.dayPhotos[indexPath.row].fileName}).first!
+                try! self.realm.write{
+                    self.realm.delete(targetItem)
+                }
+                
+                self.dayPhotos = self.readPhoto()
+                self.collectionView.reloadData()
+            })
+            
+            let cancel = UIAlertAction(title: "キャンセル", style: UIAlertAction.Style.cancel, handler: { (action) -> Void in
+                //キャンセル
+                
+            })
+            
+            alert.addAction(delete)
+            alert.addAction(cancel)
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
+    
 }

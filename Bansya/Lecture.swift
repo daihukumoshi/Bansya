@@ -15,5 +15,5 @@ class Lecture: Object {
     @Persisted var id : String = NSUUID().uuidString
 //    //写真のファイル名
 //    @Persisted var fileName: String = "default.png"
-
+    @Persisted var Subject: Subject?
 }
