@@ -15,11 +15,11 @@ class DayViewController: UIViewController, UICollectionViewDelegate, UICollectio
     
     
     @IBOutlet var collectionView: UICollectionView!
-    
     let realm = try! Realm()
     var dayPhotos: [DayPhoto] = []
     var photoExist: Bool = false
     var selectedLecture: Lecture? = nil
+    var selectedPhoto: DayPhoto? = nil
 
     
     override func viewDidLoad() {
@@ -31,6 +31,7 @@ class DayViewController: UIViewController, UICollectionViewDelegate, UICollectio
         collectionView.collectionViewLayout = layout
         collectionView.contentInset = UIEdgeInsets.zero
         collectionView.delegate = self
+        
        
        
         let longTap = UILongPressGestureRecognizer(target: self, action: #selector(longTap))
@@ -54,11 +55,9 @@ class DayViewController: UIViewController, UICollectionViewDelegate, UICollectio
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "photoCell", for: indexPath)
         let imageView = cell.contentView.viewWithTag(1) as! UIImageView
+        imageView.contentMode = .scaleAspectFill
         
         if dayPhotos.count != 0{
-            print("dayPhotos count: \(dayPhotos.count ?? 0)")
-            print("fileName: \(dayPhotos[indexPath.row].fileName)")
-            
             //let cellImage = UIImage((named: Lectures[indexPath.row].fileName))
             //URL型にキャスト
             //let fileURL = URL(string: dayPhotos[indexPath.row].fileName)
@@ -97,8 +96,8 @@ class DayViewController: UIViewController, UICollectionViewDelegate, UICollectio
 //            let cellWidth = (collectionViewWidth - spacing * (numberOfColumns + 1)) / numberOfColumns
 //
 //            return CGSize(width: cellWidth, height: cellWidth) // 正方形のセルを返す
-            let cellSize:CGFloat = (self.view.bounds.width-32)/2 - 4
-            return CGSize(width: cellSize, height: cellSize)
+        let cellSize:CGFloat = (self.view.bounds.width-32)/2.1 - 4
+        return CGSize(width: cellSize, height: cellSize)
     }
     
     
@@ -181,4 +180,16 @@ class DayViewController: UIViewController, UICollectionViewDelegate, UICollectio
         }
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        selectedPhoto = dayPhotos[indexPath.row]
+        self.performSegue(withIdentifier: "toPhoto", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toPhoto" {
+            if let photoViewController = segue.destination as? PhotoViewController {
+                photoViewController.selectedPhoto = selectedPhoto // selectedPhotoを設定
+            }
+        }
+    }
 }

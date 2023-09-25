@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		984B46252AC06FD8001B733C /* DayKeyword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984B46242AC06FD8001B733C /* DayKeyword.swift */; };
+		984B462A2AC1C89B001B733C /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984B46292AC1C89B001B733C /* PhotoViewController.swift */; };
 		984F50D92AB7EFA400B29EAD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984F50D82AB7EFA400B29EAD /* AppDelegate.swift */; };
 		984F50DB2AB7EFA400B29EAD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984F50DA2AB7EFA400B29EAD /* SceneDelegate.swift */; };
 		984F50DD2AB7EFA400B29EAD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984F50DC2AB7EFA400B29EAD /* ViewController.swift */; };
@@ -31,6 +32,7 @@
 
 /* Begin PBXFileReference section */
 		984B46242AC06FD8001B733C /* DayKeyword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayKeyword.swift; sourceTree = "<group>"; };
+		984B46292AC1C89B001B733C /* PhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
 		984F50D52AB7EFA400B29EAD /* Bansya.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bansya.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		984F50D82AB7EFA400B29EAD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		984F50DA2AB7EFA400B29EAD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -103,6 +105,7 @@
 				98C3A9692ABD70CC0006AE2E /* default.png */,
 				98BAC13F2ABDD62C00BAF6C1 /* DayPhoto.swift */,
 				984B46242AC06FD8001B733C /* DayKeyword.swift */,
+				984B46292AC1C89B001B733C /* PhotoViewController.swift */,
 			);
 			path = Bansya;
 			sourceTree = "<group>";
@@ -200,6 +203,7 @@
 				984F50DB2AB7EFA400B29EAD /* SceneDelegate.swift in Sources */,
 				984B46252AC06FD8001B733C /* DayKeyword.swift in Sources */,
 				984F511A2AB81A6F00B29EAD /* SettingViewController.swift in Sources */,
+				984B462A2AC1C89B001B733C /* PhotoViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -346,20 +350,21 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 72PSBAF333;
+				DEVELOPMENT_TEAM = CK3R58NWUP;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Bansya/Info.plist;
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "カメラロールを利用するため";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = app.miki.kyoyan.Bansya;
+				PRODUCT_BUNDLE_IDENTIFIER = app.miki.kyoyan.Bansha;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -374,20 +379,21 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 72PSBAF333;
+				DEVELOPMENT_TEAM = CK3R58NWUP;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Bansya/Info.plist;
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "カメラロールを利用するため";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = app.miki.kyoyan.Bansya;
+				PRODUCT_BUNDLE_IDENTIFIER = app.miki.kyoyan.Bansha;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

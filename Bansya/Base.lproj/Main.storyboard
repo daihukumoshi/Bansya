@@ -246,11 +246,42 @@
                     </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="R5P-aM-RrP" id="lIU-1x-nRk"/>
+                        <segue destination="Gg1-rk-2TU" kind="show" identifier="toPhoto" id="Goe-x5-6Fk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6QQ-Cf-N2L" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1887.7862595419847" y="1417.605633802817"/>
+        </scene>
+        <!--Photo View Controller-->
+        <scene sceneID="Non-Bd-T1e">
+            <objects>
+                <viewController id="Gg1-rk-2TU" customClass="PhotoViewController" customModule="Bansya" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="7HB-xd-qcp">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="MBq-RM-FZ0">
+                                <rect key="frame" x="0.0" y="91" width="375" height="687"/>
+                            </imageView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="5wr-Pb-kDe"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="5wr-Pb-kDe" firstAttribute="trailing" secondItem="MBq-RM-FZ0" secondAttribute="trailing" id="1sR-9b-4cY"/>
+                            <constraint firstItem="5wr-Pb-kDe" firstAttribute="bottom" secondItem="MBq-RM-FZ0" secondAttribute="bottom" id="iAW-yW-01f"/>
+                            <constraint firstItem="MBq-RM-FZ0" firstAttribute="top" secondItem="5wr-Pb-kDe" secondAttribute="top" id="o0s-VJ-hmw"/>
+                            <constraint firstItem="MBq-RM-FZ0" firstAttribute="leading" secondItem="5wr-Pb-kDe" secondAttribute="leading" id="zkW-QC-2gs"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="Zrl-yC-Xc3"/>
+                    <connections>
+                        <outlet property="imageView" destination="MBq-RM-FZ0" id="oCF-cb-naj"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fCJ-YX-6aV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2732" y="1448"/>
         </scene>
         <!--Setting View Controller-->
         <scene sceneID="dI0-Qw-FkX">
